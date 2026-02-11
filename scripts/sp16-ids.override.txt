@@ -1,0 +1,11 @@
+# Optional override list of SP16 clause IDs (one per line)
+# If this file contains IDs, `npm run extract:sp16` will use them instead of parsing public/sp16.pdf.
+#
+# Format examples:
+# 6
+# 6.1
+# 6.1.1
+# 6.1.1	(you can add a title after whitespace)
+# 6.1.1 - any text after id is ignored
+#
+# Leave this file empty to use automatic PDF extraction.
