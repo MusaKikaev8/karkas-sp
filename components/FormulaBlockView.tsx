@@ -1,7 +1,7 @@
 "use client";
 
 import katex from "katex";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import type { FormulaBlock } from "@/lib/formulas/types";
 import { validateRequiredNumber } from "@/lib/validation";
