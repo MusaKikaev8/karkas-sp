@@ -45,7 +45,6 @@ export function ClausesTreeViewClient({
       }
 
       const tree = await response.json();
-      console.log("Loaded clauses tree:", tree);
       setData(tree);
     } catch (err) {
       console.error("Error loading clauses tree:", err);
@@ -126,9 +125,6 @@ export function ClausesTreeViewClient({
 
   return (
     <div>
-      <div className="mb-2 text-xs text-zinc-500">
-        Пунктов загружено: {data.length}
-      </div>
       {data.length === 0 ? (
         <p className="text-sm text-zinc-600 dark:text-zinc-400">Нет пунктов</p>
       ) : (

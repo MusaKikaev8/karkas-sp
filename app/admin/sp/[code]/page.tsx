@@ -172,7 +172,7 @@ export default async function EditSpPage({
         {/* Форма добавления пункта */}
         <section className="rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-700 p-6">
           <h2 className="text-lg font-semibold mb-4">Добавить новый пункт</h2>
-          <AddClauseForm spCode={code} parentClauses={clauses} />
+          <AddClauseForm spCode={code} />
         </section>
       </div>
     </div>

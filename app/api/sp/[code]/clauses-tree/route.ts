@@ -32,12 +32,9 @@ export async function GET(
   { params }: { params: Promise<{ code: string }> }
 ) {
   try {
-    console.log("[clauses-tree GET] Called with params:", params);
     const supabase = await createSupabaseServerClient();
     let { code } = await params;
-    console.log("[clauses-tree GET] Raw code:", code);
     code = decodeURIComponent(code);
-    console.log("[clauses-tree GET] Decoded code:", code);
 
     const { data, error } = await supabase
       .from("sp_clauses_tree")
@@ -49,10 +46,9 @@ export async function GET(
 
     // Build tree structure
     const tree = buildTree(data || [], null);
-    console.log("[clauses-tree GET] Returning tree with", data?.length || 0, "items");
     return NextResponse.json(tree);
   } catch (error) {
-    console.error("[clauses-tree GET] Error:", error);
+    console.error("Error fetching clauses tree:", error);
     return NextResponse.json(
       { error: "Ошибка загрузки пунктов" },
       { status: 500 }
