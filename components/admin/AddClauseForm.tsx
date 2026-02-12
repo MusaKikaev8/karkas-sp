@@ -126,7 +126,7 @@ export function AddClauseForm({ spCode }: { spCode: string }) {
       {isLoading ? (
         <div className="text-sm text-zinc-600 dark:text-zinc-400">Загрузка пунктов...</div>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="space-y-4">
           {clauses.length > 0 && (
             <div className="space-y-2">
               <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
@@ -147,36 +147,38 @@ export function AddClauseForm({ spCode }: { spCode: string }) {
             </div>
           )}
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-              Номер пункта *
-            </label>
-            <input
-              type="text"
-              required
-              placeholder="5 или 5.2 или 5.2.1"
-              value={formData.clauseId}
-              onChange={(e) =>
-                setFormData({ ...formData, clauseId: e.target.value })
-              }
-              className="w-full px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Номер пункта *
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="5 или 5.2 или 5.2.1"
+                value={formData.clauseId}
+                onChange={(e) =>
+                  setFormData({ ...formData, clauseId: e.target.value })
+                }
+                className="w-full px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-              Название *
-            </label>
-            <input
-              type="text"
-              required
-              placeholder="Название пункта"
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-              className="w-full px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Название *
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="Название пункта"
+                value={formData.title}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
+                className="w-full px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
           </div>
         </div>
       )}
