@@ -9,6 +9,7 @@ import { FormulaManager } from "@/components/admin/FormulaManager";
 import { CustomFormulaManager } from "@/components/admin/CustomFormulaManager";
 import { TableManager } from "@/components/admin/TableManager";
 import { ImageManager } from "@/components/admin/ImageManager";
+import { SpDocumentEditor } from "@/components/admin/SpDocumentEditor";
 import { compareClauseIds } from "@/lib/utils/sp-order";
 
 type SpDocument = {
@@ -18,6 +19,8 @@ type SpDocument = {
   year: number;
   status: "действует" | "проект" | "утратил силу";
   source_url: string | null;
+  intro: string | null;
+  preface: string | null;
   created_at: string;
 };
 
@@ -138,6 +141,17 @@ export default async function EditSpPage({
       </header>
 
       <div className="space-y-6">
+        {/* Редактирование СП */}
+        <SpDocumentEditor
+          code={document.code}
+          title={document.title}
+          year={document.year}
+          status={document.status}
+          sourceUrl={document.source_url}
+          intro={document.intro || null}
+          preface={document.preface || null}
+        />
+
         {/* Кастомные формулы */}
         <section>
           <h2 className="text-lg font-semibold mb-4">Кастомные формулы СП</h2>

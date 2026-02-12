@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
     const supabase = auth.supabase;
     const body = await request.json();
-    const { code, title, year, status, sourceUrl } = body;
+    const { code, title, year, status, sourceUrl, intro, preface } = body;
     const normalizedCode = normalizeSpCode(String(code ?? "").trim());
 
     // Валидация
@@ -95,6 +95,8 @@ export async function POST(request: NextRequest) {
         year,
         status,
         source_url: sourceUrl || null,
+        intro: intro || null,
+        preface: preface || null,
         created_at: new Date().toISOString(),
       })
       .select()

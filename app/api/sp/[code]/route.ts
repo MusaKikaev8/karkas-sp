@@ -76,7 +76,7 @@ export async function PUT(
     let { code } = await params;
     code = decodeURIComponent(code);
     const body = await request.json();
-    const { title, year, status, sourceUrl } = body;
+    const { title, year, status, sourceUrl, intro, preface } = body;
 
     const { data, error } = await supabase
       .from("sp_documents")
@@ -85,6 +85,8 @@ export async function PUT(
         year,
         status,
         source_url: sourceUrl || null,
+        intro: intro || null,
+        preface: preface || null,
       })
       .eq("code", code)
       .select()
