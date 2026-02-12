@@ -39,9 +39,13 @@ export function ClausesTreeViewClient({
       const response = await fetch(
         `/api/sp/${encodeURIComponent(spCode)}/clauses-tree`
       );
-      if (!response.ok) throw new Error("Ошибка загрузки");
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Ошибка загрузки");
+      }
 
       const tree = await response.json();
+      console.log("Loaded clauses tree:", tree);
       setData(tree);
     } catch (err) {
       console.error("Error loading clauses tree:", err);
@@ -122,6 +126,9 @@ export function ClausesTreeViewClient({
 
   return (
     <div>
+      <div className="mb-2 text-xs text-zinc-500">
+        Пунктов загружено: {data.length}
+      </div>
       {data.length === 0 ? (
         <p className="text-sm text-zinc-600 dark:text-zinc-400">Нет пунктов</p>
       ) : (
