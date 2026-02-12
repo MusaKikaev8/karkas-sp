@@ -35,30 +35,20 @@ export default async function SpDocumentPage({
     notFound();
   }
 
-  // Load clauses
-  const { data: clausesData } = await supabase
-    .from("sp_clauses")
-    .select("id, sp_code, clause_id, title, summary")
+  // Load clauses from new hierarchical table
+  const { data: clausesTreeData } = await supabase
+    .from("sp_clauses_tree")
+    .select("id, sp_code, clause_id, title, content_md")
     .eq("sp_code", code)
     .order("clause_id", { ascending: true });
 
-  // Load calculators (if table exists)
-  const { data: calculatorsData } = await supabase
-    .from("sp_clause_calculators")
-    .select("*")
-    .eq("sp_code", code);
-
   // Transform to SpClause format
-  const clauses: SpClause[] = (clausesData || []).map((row) => {
-    const calc = (calculatorsData || [])
-      .filter((c) => c.clause_id === row.clause_id)
-      .map((c) => ({ slug: c.calculator_slug, title: c.calculator_title || c.calculator_slug }));
-
+  const clauses: SpClause[] = (clausesTreeData || []).map((row) => {
     return {
       id: row.clause_id,
       title: row.title,
-      summary: row.summary || "",
-      calculators: calc,
+      summary: row.content_md?.split('\n')[0] || "",
+      calculators: [],
       formulaBlockIds: [],
     };
   });
