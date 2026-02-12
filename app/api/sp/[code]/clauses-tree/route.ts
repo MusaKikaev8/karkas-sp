@@ -209,8 +209,14 @@ function buildTree(
 ): any[] {
   return items
     .filter((item) => item.parent_id === parentId)
-    .map((item) => ({
-      ...item,
-      children: buildTree(items, item.id),
-    }));
+    .map((item) => {
+      const children = buildTree(items, item.id);
+      const result: any = {
+        ...item,
+      };
+      if (children.length > 0) {
+        result.children = children;
+      }
+      return result;
+    });
 }

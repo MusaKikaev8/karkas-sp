@@ -45,6 +45,8 @@ export function ClausesTreeViewClient({
       }
 
       const tree = await response.json();
+      console.log("API Response - tree structure:", JSON.stringify(tree, null, 2));
+      console.log("Tree length:", tree.length);
       setData(tree);
     } catch (err) {
       console.error("Error loading clauses tree:", err);
@@ -66,6 +68,8 @@ export function ClausesTreeViewClient({
   const renderNode = (node: ClauseTreeNode, level: number = 0) => {
     const hasChildren = node.children && node.children.length > 0;
     const isExpanded = expandedIds.has(node.id);
+
+    console.log(`Rendering node: ${node.clause_id}, has children: ${hasChildren}, expanded: ${isExpanded}`);
 
     return (
       <div key={node.id} className="border-b border-zinc-200 dark:border-zinc-800  last:border-b-0">
